@@ -52,18 +52,6 @@ export default function NavBar({ className = '' }: NavBarProps) {
             >
               Home
             </Link>
-            
-            <Link
-              href="/session"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                isActive('/session')
-                  ? 'bg-[var(--panel)] text-[var(--accent)] shadow-sm'
-                  : 'text-[var(--subtle)] hover:text-[var(--text)] hover:bg-[var(--panel)]/50'
-              }`}
-              aria-current={isActive('/session') ? 'page' : undefined}
-            >
-              Meditate
-            </Link>
           </div>
           
           {/* Mobile Navigation */}
@@ -78,18 +66,6 @@ export default function NavBar({ className = '' }: NavBarProps) {
               aria-label="Home"
             >
               Home
-            </Link>
-            
-            <Link
-              href="/session"
-              className={`p-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                isActive('/session')
-                  ? 'bg-[var(--panel)] text-[var(--accent)]'
-                  : 'text-[var(--subtle)] hover:text-[var(--text)] hover:bg-[var(--panel)]/50'
-              }`}
-              aria-label="Start Meditation"
-            >
-              Meditate
             </Link>
           </div>
         </div>

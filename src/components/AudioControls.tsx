@@ -211,13 +211,13 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
   };
 
   return (
-    <div className={`bg-gray-800 rounded-lg p-4 ${className}`}>
+    <div className={`bg-[var(--panel)] rounded-lg p-4 ${className}`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium text-green-400">Meditation Sounds</h3>
+        <h3 className="text-lg font-medium text-[var(--accent)]">Meditation Sounds</h3>
         <button
           onClick={() => setShowSoundSelector(!showSoundSelector)}
-          className="text-sm text-gray-400 hover:text-green-400 transition-colors"
+          className="text-sm text-[var(--subtle)] hover:text-[var(--accent)] transition-colors"
         >
           {MEDITATION_SOUNDS[currentSoundIndex].name}
         </button>
@@ -225,7 +225,7 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
 
       {/* Sound Selector */}
       {showSoundSelector && (
-        <div className="mb-4 p-3 bg-gray-700 rounded-lg">
+        <div className="mb-4 p-3 bg-[var(--bg)] rounded-lg">
           <div className="grid grid-cols-1 gap-2">
             {MEDITATION_SOUNDS.map((sound, index) => (
               <button
@@ -233,8 +233,8 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
                 onClick={() => handleSoundSelect(index)}
                 className={`px-3 py-2 text-left rounded transition-colors ${
                   index === currentSoundIndex
-                    ? 'bg-green-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-600'
+                    ? 'bg-[var(--accent)] text-[var(--bg)]'
+                    : 'text-[var(--text)] hover:bg-[var(--panel)]'
                 }`}
               >
                 {sound.name}
@@ -248,7 +248,7 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
       <div className="flex items-center justify-center space-x-4 mb-4">
         <button
           onClick={handlePrevious}
-          className="p-2 text-gray-400 hover:text-green-400 transition-colors"
+          className="p-2 text-[var(--subtle)] hover:text-[var(--accent)] transition-colors"
           title="Previous sound"
         >
           <SkipBack className="w-5 h-5" />
@@ -256,7 +256,7 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
         
         <button
           onClick={handlePlay}
-          className="flex items-center justify-center w-12 h-12 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors"
+          className="flex items-center justify-center w-12 h-12 bg-[var(--accent)] text-[var(--bg)] rounded-full hover:bg-[var(--accent)]/80 transition-colors"
           title={isPlaying ? 'Pause' : 'Play'}
         >
           {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
@@ -264,7 +264,7 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
         
         <button
           onClick={handleNext}
-          className="p-2 text-gray-400 hover:text-green-400 transition-colors"
+          className="p-2 text-[var(--subtle)] hover:text-[var(--accent)] transition-colors"
           title="Next sound"
         >
           <SkipForward className="w-5 h-5" />
@@ -275,7 +275,7 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
       <div className="flex items-center space-x-3">
         <button
           onClick={toggleMute}
-          className="text-gray-400 hover:text-green-400 transition-colors"
+          className="text-[var(--subtle)] hover:text-[var(--accent)] transition-colors"
           title={isMuted ? 'Unmute' : 'Mute'}
         >
           {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
@@ -289,20 +289,20 @@ export default function AudioControls({ onPlayStateChange, className = '' }: Aud
             step="0.1"
             value={volume}
             onChange={handleVolumeChange}
-            className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
+            className="w-full h-2 bg-[var(--panel)] rounded-lg appearance-none cursor-pointer slider"
           />
         </div>
         
-        <span className="text-sm text-gray-400 w-8">
+        <span className="text-sm text-[var(--subtle)] w-8">
           {Math.round(volume * 100)}
         </span>
       </div>
 
       {/* Status */}
       <div className="mt-3 text-center">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-[var(--subtle)]">
           {isPlaying ? (
-            <span className="text-green-400">♪ Playing: {MEDITATION_SOUNDS[currentSoundIndex].name}</span>
+            <span className="text-[var(--accent)]">♪ Playing: {MEDITATION_SOUNDS[currentSoundIndex].name}</span>
           ) : (
             'Click play to start meditation sounds'
           )}

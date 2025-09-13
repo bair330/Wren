@@ -71,13 +71,13 @@ export default function BreathingAnimation({
   const getTransitionDuration = () => {
     switch (phase) {
       case 'inhale':
-        return `duration-[${inhaleTime}ms]`
+        return inhaleTime
       case 'hold':
-        return 'duration-0'
+        return 0
       case 'exhale':
-        return `duration-[${exhaleTime}ms]`
+        return exhaleTime
       default:
-        return 'duration-1000'
+        return 1000
     }
   }
 
@@ -97,46 +97,47 @@ export default function BreathingAnimation({
   return (
     <div className="flex flex-col items-center justify-center space-y-16">
       {/* Breathing Circle */}
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center w-96 h-96 overflow-hidden">
         {/* Outermost glow */}
         <div 
-          className={`absolute w-80 h-80 rounded-full bg-green-400/10 blur-3xl transition-all ease-in-out ${
-            isAnimating ? getTransitionDuration() : 'duration-1000'
-          } ${
+          className={`absolute w-80 h-80 rounded-full bg-[var(--accent)]/10 blur-3xl transition-all ease-in-out ${
             isAnimating ? getCircleScale() : 'scale-100'
           }`}
+          style={{
+            transitionDuration: `${isAnimating ? getTransitionDuration() : 1000}ms`
+          }}
         />
         
         {/* Outer glow ring */}
         <div 
-          className={`absolute w-64 h-64 rounded-full bg-green-400/20 blur-xl transition-all ease-in-out ${
-            isAnimating ? getTransitionDuration() : 'duration-1000'
-          } ${
+          className={`absolute w-64 h-64 rounded-full bg-[var(--accent)]/20 blur-xl transition-all ease-in-out ${
             isAnimating ? getCircleScale() : 'scale-100'
           }`}
+          style={{
+            transitionDuration: `${isAnimating ? getTransitionDuration() : 1000}ms`
+          }}
         />
         
         {/* Main breathing orb - Siri-like design */}
         <div 
           className={`relative w-48 h-48 rounded-full transition-all ease-in-out ${
-            isAnimating ? getTransitionDuration() : 'duration-1000'
-          } ${
             isAnimating ? getCircleScale() : 'scale-100'
           }`}
           style={{
-            background: 'radial-gradient(circle at 30% 30%, rgba(34, 197, 94, 0.9), rgba(22, 163, 74, 0.8), rgba(21, 128, 61, 0.7))',
+            background: 'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 90%, transparent), color-mix(in srgb, var(--accent) 80%, transparent), color-mix(in srgb, var(--accent) 70%, transparent))',
             boxShadow: `
-              0 0 60px rgba(34, 197, 94, 0.4),
-              0 0 120px rgba(34, 197, 94, 0.2),
+              0 0 60px color-mix(in srgb, var(--accent) 40%, transparent),
+              0 0 120px color-mix(in srgb, var(--accent) 20%, transparent),
               inset 0 0 60px rgba(255, 255, 255, 0.1)
-            `
+            `,
+            transitionDuration: `${isAnimating ? getTransitionDuration() : 1000}ms`
           }}
         >
           {/* Multiple layered inner circles for depth */}
           <div 
             className="absolute inset-2 rounded-full transition-all duration-2000 ease-in-out"
             style={{
-              background: 'radial-gradient(circle at 40% 40%, rgba(74, 222, 128, 0.6), rgba(34, 197, 94, 0.4))',
+              background: 'radial-gradient(circle at 40% 40%, color-mix(in srgb, var(--accent) 60%, transparent), color-mix(in srgb, var(--accent) 40%, transparent))',
               filter: 'blur(1px)'
             }}
           />
@@ -144,7 +145,7 @@ export default function BreathingAnimation({
           <div 
             className="absolute inset-6 rounded-full transition-all duration-3000 ease-in-out"
             style={{
-              background: 'radial-gradient(circle at 50% 30%, rgba(134, 239, 172, 0.8), rgba(74, 222, 128, 0.3))',
+              background: 'radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--accent) 80%, white), color-mix(in srgb, var(--accent) 30%, transparent))',
               filter: 'blur(0.5px)'
             }}
           />
@@ -155,7 +156,7 @@ export default function BreathingAnimation({
               isAnimating ? 'animate-pulse' : ''
             }`}
             style={{
-              background: 'radial-gradient(circle, rgba(187, 247, 208, 0.9), rgba(134, 239, 172, 0.6))',
+              background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 90%, white), color-mix(in srgb, var(--accent) 60%, white))',
               animation: isAnimating ? 'gentle-pulse 2s ease-in-out infinite' : 'none'
             }}
           />
@@ -173,24 +174,24 @@ export default function BreathingAnimation({
 
       {/* Phase indicator with increased spacing */}
       <div className="text-center space-y-3 mt-8">
-        <h3 className="text-3xl font-light text-green-400">
+        <h3 className="text-3xl font-light text-[var(--accent)]">
           {isActive ? getPhaseText() : 'Ready to Begin'}
         </h3>
-        <p className="text-gray-400 text-base">
+        <p className="text-[var(--subtle)] text-base">
           {isActive ? 'Follow the orb with your breath' : 'Press start to begin breathing exercise'}
         </p>
       </div>
 
       {/* Breathing pattern indicator */}
       {isActive && (
-        <div className="flex items-center space-x-6 text-base text-gray-500 mt-6">
-          <span className={phase === 'inhale' ? 'text-green-400 font-medium' : ''}>
+        <div className="flex items-center space-x-6 text-base text-[var(--subtle)] mt-6">
+          <span className={phase === 'inhale' ? 'text-[var(--accent)] font-medium' : ''}>
             In: {inhaleTime / 1000}s
           </span>
-          <span className={phase === 'hold' ? 'text-green-400 font-medium' : ''}>
+          <span className={phase === 'hold' ? 'text-[var(--accent)] font-medium' : ''}>
             Hold: {holdTime / 1000}s
           </span>
-          <span className={phase === 'exhale' ? 'text-green-400 font-medium' : ''}>
+          <span className={phase === 'exhale' ? 'text-[var(--accent)] font-medium' : ''}>
             Out: {exhaleTime / 1000}s
           </span>
         </div>

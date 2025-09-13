@@ -212,28 +212,23 @@ export default function StressSlider({
         </div>
       </div>
       
-      {/* Labels */}
+      {/* Labels - Removed preset buttons, keeping only visual labels if needed */}
       {showLabels && (
         <div className="flex justify-between mt-4 px-1">
           {stressLabels.map((stress) => (
-            <button
+            <div
               key={stress.value}
               className={cn(
-                'text-center transition-all duration-200 rounded-lg px-2 py-1',
+                'text-center transition-all duration-200 px-2 py-1',
                 classes.label,
                 stress.value === value 
                   ? `${stress.color} font-semibold` 
-                  : 'text-[var(--subtle)] hover:text-[var(--text)]',
-                !disabled && 'hover:bg-[var(--panel)]/50 cursor-pointer',
-                disabled && 'cursor-not-allowed'
+                  : 'text-[var(--subtle)]'
               )}
-              onClick={() => !disabled && onChange(stress.value)}
-              disabled={disabled}
-              aria-label={`Set stress level to ${stress.value}: ${stress.label}`}
             >
               <div className="text-xs font-medium">{stress.value}</div>
               <div className="text-xs opacity-80">{stress.label}</div>
-            </button>
+            </div>
           ))}
         </div>
       )}

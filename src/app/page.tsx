@@ -6,12 +6,14 @@ import { Heart, Sparkles } from 'lucide-react';
 import { StartButton } from '@/components/GlowButton';
 import { LandingBreathingBackdrop } from '@/components/BreathingBackdrop';
 import { HeaderStreakBadge } from '@/components/StreakBadge';
+import { MeditationSelectionModal } from '@/components/MeditationSelectionModal';
 import { cn } from '@/lib/utils';
 
 export default function LandingPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [showMeditationModal, setShowMeditationModal] = useState(false);
   
   useEffect(() => {
     setMounted(true);
@@ -21,7 +23,7 @@ export default function LandingPage() {
   }, []);
   
   const handleStartMeditation = () => {
-    router.push('/session');
+    router.push('/stress-assessment');
   };
   
   if (!mounted) {
@@ -149,6 +151,12 @@ export default function LandingPage() {
         {/* Center glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[var(--accent)]/3 via-transparent to-transparent rounded-full" />
       </div>
+      
+      {/* Meditation Selection Modal */}
+      <MeditationSelectionModal 
+        isOpen={showMeditationModal}
+        onClose={() => setShowMeditationModal(false)}
+      />
     </div>
   );
 }
