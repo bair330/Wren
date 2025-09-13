@@ -117,7 +117,7 @@ export default function MeditationTypeSelection() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style={{ backgroundColor: 'var(--panel)' }}>
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: stressLevel <= 3 ? 'var(--accent)' : stressLevel <= 6 ? '#FFA500' : '#FF6B6B' }}></div>
             <span className="text-sm font-medium" style={{ color: 'var(--text)' }}>
-              {getStressLevelText(stressLevel)} ({stressLevel}/10)
+              {getStressLevelText(stressLevel)} ({stressLevel}/5)
             </span>
           </div>
           

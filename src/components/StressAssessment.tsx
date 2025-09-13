@@ -68,7 +68,7 @@ export default function StressAssessment({ onComplete }: StressAssessmentProps) 
           {/* Current Level Display */}
           <div className="text-center mb-6">
             <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: getStressColor(stressLevel) }}>
-              {stressLevel}/10
+              {stressLevel}/5
             </div>
             <p className="text-sm md:text-base" style={{ color: 'var(--text)' }}>
               {getStressDescription(stressLevel)}
