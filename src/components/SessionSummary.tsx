@@ -82,13 +82,13 @@ export default function SessionSummary({
               <div className="text-center p-3 md:p-4 bg-gray-700 rounded-xl">
                 <p className="text-xs md:text-sm text-gray-400 mb-1 md:mb-2">Before</p>
                 <p className={`text-2xl md:text-3xl font-bold ${getStressColor(stressBefore)}`}>
-                  {stressBefore}/10
+                  {stressBefore}/5
                 </p>
               </div>
               <div className="text-center p-3 md:p-4 bg-gray-700 rounded-xl">
                 <p className="text-xs md:text-sm text-gray-400 mb-1 md:mb-2">After</p>
                 <p className={`text-2xl md:text-3xl font-bold ${getStressColor(stressAfter)}`}>
-                  {stressAfter}/10
+                  {stressAfter}/5
                 </p>
               </div>
             </div>
