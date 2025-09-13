@@ -1,0 +1,50 @@
+# Wren Meditation Assistant - Intent Recognition
+
+intents:
+  start_meditation:
+    patterns:
+      - "start meditation"
+      - "begin session"
+      - "let's meditate"
+      - "I want to meditate"
+    response: "initiate_meditation_session"
+
+  end_meditation:
+    patterns:
+      - "stop meditation"
+      - "end session"
+      - "finish"
+      - "I'm done"
+    response: "end_meditation_session"
+
+  check_progress:
+    patterns:
+      - "how am I doing"
+      - "show my progress"
+      - "meditation streak"
+      - "my stats"
+    response: "display_progress_metrics"
+
+  stress_check:
+    patterns:
+      - "I'm stressed"
+      - "feeling anxious"
+      - "need to relax"
+      - "stress level"
+    response: "assess_stress_level"
+
+  guided_meditation:
+    patterns:
+      - "guide me"
+      - "breathing exercise"
+      - "body scan"
+      - "loving kindness"
+    response: "start_guided_session"
+
+  help:
+    patterns:
+      - "help"
+      - "what can you do"
+      - "commands"
+      - "how does this work"
+    response: "show_help_menu"

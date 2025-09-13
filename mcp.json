@@ -1,0 +1,61 @@
+{
+  "name": "wren-meditation-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered meditation assistant with voice interaction and progress tracking",
+  "testSprite": {
+    "enabled": true,
+    "testDirectory": "./tests",
+    "coverage": {
+      "threshold": 80,
+      "include": [
+        "src/**/*.js",
+        "src/**/*.jsx",
+        "src/**/*.ts",
+        "src/**/*.tsx"
+      ],
+      "exclude": [
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/index.js"
+      ]
+    },
+    "autoGenerate": {
+      "unitTests": true,
+      "integrationTests": true,
+      "e2eTests": false
+    },
+    "testFramework": "jest",
+    "testPatterns": {
+      "unit": "**/*.test.js",
+      "integration": "**/*.integration.test.js",
+      "e2e": "**/*.e2e.test.js"
+    },
+    "mockStrategy": "auto",
+    "testData": {
+      "fixtures": "./tests/fixtures",
+      "mocks": "./tests/mocks"
+    }
+  },
+  "components": {
+    "agent": {
+      "path": "./src/agent",
+      "type": "voice-ai",
+      "dependencies": ["trae-ai", "speech-recognition"]
+    },
+    "ui": {
+      "path": "./src/ui",
+      "type": "react-frontend",
+      "dependencies": ["react", "react-dom"]
+    },
+    "orchestration": {
+      "path": "./src/orchestration",
+      "type": "state-machine",
+      "dependencies": ["xstate"]
+    },
+    "metrics": {
+      "path": "./src/metrics",
+      "type": "data-tracking",
+      "dependencies": ["local-storage"]
+    }
+  }
+}
