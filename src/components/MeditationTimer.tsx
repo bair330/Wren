@@ -157,7 +157,7 @@ export default function MeditationTimer({
       {/* Duration Selection */}
       {timerState === 'idle' && (
         <div className="w-full max-w-md space-y-4">
-          <h3 className="text-lg font-medium text-green-400 text-center mb-4">
+          <h3 className="text-lg font-medium text-[var(--accent)] text-center mb-4">
             Choose Session Duration
           </h3>
           
@@ -169,8 +169,8 @@ export default function MeditationTimer({
                 onClick={() => handleDurationChange(preset.value)}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   duration === preset.value
-                    ? 'bg-green-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-[var(--accent)] text-[var(--bg)]'
+                    : 'bg-[var(--panel)] text-[var(--subtle)] hover:bg-[var(--panel)]/80 hover:text-[var(--text)]'
                 }`}
               >
                 {preset.label}
@@ -183,7 +183,7 @@ export default function MeditationTimer({
             {!showCustomInput ? (
               <button
                 onClick={() => setShowCustomInput(true)}
-                className="flex items-center space-x-2 px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors"
+                className="flex items-center space-x-2 px-4 py-2 bg-[var(--panel)] text-[var(--subtle)] rounded-lg hover:bg-[var(--panel)]/80 hover:text-[var(--text)] transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 <span>Custom</span>
@@ -197,11 +197,11 @@ export default function MeditationTimer({
                   placeholder="Minutes (1-120)"
                   min="1"
                   max="120"
-                  className="flex-1 px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none"
+                  className="flex-1 px-3 py-2 bg-[var(--panel)] text-[var(--text)] rounded-lg border border-[var(--subtle)]/30 focus:border-[var(--accent)] focus:outline-none"
                 />
                 <button
                   onClick={handleCustomDuration}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  className="px-4 py-2 bg-[var(--accent)] text-[var(--bg)] rounded-lg hover:bg-[var(--accent)]/80 transition-colors"
                 >
                   Set
                 </button>
@@ -210,7 +210,7 @@ export default function MeditationTimer({
                     setShowCustomInput(false);
                     setCustomDuration('');
                   }}
-                  className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="px-4 py-2 bg-[var(--subtle)]/20 text-[var(--text)] rounded-lg hover:bg-[var(--subtle)]/30 transition-colors"
                 >
                   Cancel
                 </button>
@@ -228,7 +228,8 @@ export default function MeditationTimer({
             cx="100"
             cy="100"
             r="90"
-            stroke="#374151"
+            stroke="var(--subtle)"
+            strokeOpacity="0.3"
             strokeWidth="8"
             fill="none"
           />
@@ -237,7 +238,7 @@ export default function MeditationTimer({
             cx="100"
             cy="100"
             r="90"
-            stroke="#10b981"
+            stroke="var(--accent)"
             strokeWidth="8"
             fill="none"
             strokeLinecap="round"
@@ -249,10 +250,10 @@ export default function MeditationTimer({
         
         {/* Time Display */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-4xl font-light text-white mb-2">
+          <div className="text-4xl font-light text-[var(--text)] mb-2">
             {formatTime(timeRemaining)}
           </div>
-          <div className="text-sm text-gray-400">
+          <div className="text-sm text-[var(--subtle)]">
             {timerState === 'idle' && 'Ready to start'}
             {timerState === 'running' && 'Meditating...'}
             {timerState === 'paused' && 'Paused'}
@@ -266,7 +267,7 @@ export default function MeditationTimer({
         {timerState === 'idle' && (
           <button
             onClick={handleStart}
-            className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+            className="flex items-center space-x-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg)] rounded-lg hover:bg-[var(--accent)]/80 transition-colors font-medium"
           >
             <Play className="w-5 h-5" />
             <span>Start Session</span>
@@ -277,14 +278,14 @@ export default function MeditationTimer({
           <>
             <button
               onClick={handlePause}
-              className="flex items-center space-x-2 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-medium"
+              className="flex items-center space-x-2 px-6 py-3 bg-[var(--accent-2)] text-[var(--bg)] rounded-lg hover:bg-[var(--accent-2)]/80 transition-colors font-medium"
             >
               <Pause className="w-5 h-5" />
               <span>Pause</span>
             </button>
             <button
               onClick={handleStop}
-              className="flex items-center space-x-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+              className="flex items-center space-x-2 px-4 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
             >
               <Square className="w-5 h-5" />
               <span>Stop</span>
@@ -296,14 +297,14 @@ export default function MeditationTimer({
           <>
             <button
               onClick={handleStart}
-              className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              className="flex items-center space-x-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg)] rounded-lg hover:bg-[var(--accent)]/80 transition-colors font-medium"
             >
               <Play className="w-5 h-5" />
               <span>Resume</span>
             </button>
             <button
               onClick={handleStop}
-              className="flex items-center space-x-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+              className="flex items-center space-x-2 px-4 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
             >
               <Square className="w-5 h-5" />
               <span>Stop</span>
@@ -315,7 +316,7 @@ export default function MeditationTimer({
           <>
             <button
               onClick={handleReset}
-              className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              className="flex items-center space-x-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg)] rounded-lg hover:bg-[var(--accent)]/80 transition-colors font-medium"
             >
               <RotateCcw className="w-5 h-5" />
               <span>New Session</span>
@@ -327,11 +328,11 @@ export default function MeditationTimer({
       {/* Session Extension (when completed) */}
       {timerState === 'completed' && (
         <div className="flex flex-col items-center space-y-3">
-          <p className="text-gray-400 text-sm">Want to continue?</p>
+          <p className="text-[var(--subtle)] text-sm">Want to continue?</p>
           <div className="flex space-x-2">
             <button
               onClick={() => handleExtendSession(5)}
-              className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors text-sm"
+              className="px-4 py-2 bg-[var(--panel)] text-[var(--subtle)] rounded-lg hover:bg-[var(--panel)]/80 hover:text-[var(--text)] transition-colors text-sm"
             >
               +5 min
             </button>
